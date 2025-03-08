@@ -8,7 +8,16 @@ function LoginForm() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({ resolver: zodResolver(schema), mode: "onBlur" });
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    mode: "onBlur",
+    defaultValues: {
+      userName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
