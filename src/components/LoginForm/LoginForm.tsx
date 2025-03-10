@@ -2,8 +2,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FormValues, schema } from "../../models";
 import { InputForm } from "../../utility/Form";
+import { useGlobalContext } from "../../context";
 
 function LoginForm() {
+  const { value } = useGlobalContext();
+  
   const {
     control,
     handleSubmit,
@@ -54,6 +57,7 @@ function LoginForm() {
         error={errors.confirmPassword}
       />
       <button type="submit"> Submit </button>
+      {value}
     </form>
   );
 }
