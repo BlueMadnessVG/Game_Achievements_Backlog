@@ -1,13 +1,21 @@
 import "./App.css";
-import { LoginForm } from "./components/LoginForm";
-import { GlobalProvider } from "./context";
+import { Modal } from "./components/Modal";
+import { useModalContext } from "./context/modal.context";
 
 function App() {
-  
+  const { setState } = useModalContext();
+
+  const handleOpenModal = () => {
+    setState(true);
+  };
+
   return (
-    <GlobalProvider>
-      <LoginForm />
-    </GlobalProvider>
+    <>
+      <Modal>
+        <h2>Hola este es un modal</h2>
+      </Modal>
+      <button onClick={handleOpenModal}> Open Modal </button>
+    </>
   );
 }
 
