@@ -9,19 +9,28 @@ Title: Game Case
 import { Mesh, MeshStandardMaterial } from "three";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+import { memo, useCallback, useRef, useState } from "react";
+import { Select } from "@react-three/postprocessing";
 
 type GLTFResult = GLTF & {
   nodes: Record<string, Mesh>;
   materials: Record<string, MeshStandardMaterial>;
 };
 
-export function Game_Case_Model(props: any) {
+export const Game_Case_Model = memo((props: any) => {
+  const group = useRef();
   const { nodes, materials } = useGLTF(
     "/3D_Models/game_case.glb"
   ) as unknown as GLTFResult;
+  const [hovered, setHovered] = useState<string | null>();
+
+  const hover = useCallback((name: string | null  | undefined) => {
+    setHovered((prev) => (prev !== name ? name : prev));
+  }, []);
+
   return (
-    <group {...props} dispose={null}>
-      <group>
+    <group ref={group} {...props} dispose={null} >
+      <Select name="case" enabled={ hovered === "case" }>
         <mesh
           castShadow
           receiveShadow
@@ -34,9 +43,9 @@ export function Game_Case_Model(props: any) {
           geometry={nodes.Object_5.geometry}
           material={materials.Case}
         />
-      </group>  
+      </Select>
     </group>
   );
-}
+});
 
 useGLTF.preload("/3D_Models/game_case.glb");
