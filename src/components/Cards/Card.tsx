@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useHolographicEffect } from "../../hooks";
-import styles from "./Card.module.css";
+import "./css/Card.css";
+import "./css/Card_shiny.css";
 import { animated } from "@react-spring/web";
 
 interface CardProps {
@@ -8,14 +9,14 @@ interface CardProps {
   foil?: string;
   mask?: string;
   enableEffect?: boolean;
+  data_set?: "Shiny" | "Normal" | "Disable";
 }
-
-
 
 export function Card({
   img,
   foil = '',
   mask = '',
+  data_set = "Normal",
   enableEffect = true,
 }: CardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -50,7 +51,7 @@ export function Card({
     }
   };
 
-  const staticStyles = {
+  const staticStyles: React.CSSProperties & Record<string, string | number> = {
     "--seedx": randomSeed.x,
     "--seedy": randomSeed.y,
     "--cosmosbg": `${cosmosPosition.x}px ${cosmosPosition.y}px`,
@@ -66,11 +67,11 @@ export function Card({
   };
 
   const cardClasses = [
-    styles.card,
+    "card",
     "interactive",
     isActive ? "active" : "",
     isInteracting ? "interacting" : "",
-    mask ? styles.masked : "",
+    mask ? "masked" : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -80,11 +81,11 @@ export function Card({
       ref={cardRef}
       className={cardClasses}
       style={springStyle}
-      data-set="normal"
+      data-set={data_set}
     >
-      <div className={styles.card_translater}>
+      <div className={"card_translater"}>
         <animated.button
-          className={styles.card_rotator}
+          className={"card_rotator"}
           onClick={handleActive}
           onMouseMove={enableEffect ? handleInteract : undefined}
           onMouseLeave={enableEffect ? () => handleInteractEnd() : undefined}
@@ -94,12 +95,12 @@ export function Card({
           <img
             src="/assets/img/tcg-card-back-2x.jpg"
             alt="card back"
-            className={styles.card_back}
+            className={"card_back"}
             width="660"
             height="921"
           />
 
-          <div className={styles.card_front} style={combinedStyles}>
+          <div className={"card_front"} style={combinedStyles}>
             <img
               src={img}
               alt="Pokemon"
@@ -108,8 +109,8 @@ export function Card({
               width="660"
               height="921"
             />
-            <div className={styles.card_shine} />
-            <div className={styles.card_glare} />
+            <div className={"card_shine"} />
+            <div className={"card_glare"} />
           </div>
         </animated.button>
       </div>

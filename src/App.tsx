@@ -1,5 +1,4 @@
 import "./App.css";
-import "./components/Cards/Card_shine.css"
 import { Card } from "./components";
 import { Display } from "./components/Display/Display";
 import { Modal } from "./components/Modal";
@@ -28,8 +27,8 @@ function App() {
         {/* <Display>
           <Game_Case_Model scale={5} />
         </Display> */}
-        <Card img={testImg} mask={testMask} foil={testFoil} />
-        <Card img={testImg2} mask={testMask2} foil={testFoil2} />
+        <Card img={testImg} mask={testMask} foil={testFoil} data_set={"Shiny"} />
+        <Card img={testImg2} mask={testMask2} foil={testFoil2}/>
       </div>
     </>
   );
