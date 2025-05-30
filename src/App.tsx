@@ -27,8 +27,8 @@ function App() {
         {/* <Display>
           <Game_Case_Model scale={5} />
         </Display> */}
-        <Card img={testImg} mask={testMask} foil={testFoil} data_set={"Shiny"} />
-        <Card img={testImg2} mask={testMask2} foil={testFoil2}/>
+        <Card img={testImg} mask={testMask} foil={testFoil} data_set={"Shiny_raycast"} />
+        <Card img={testImg2} mask={testFoil2} foil={testMask2} data-set={"Normal"}/>
       </div>
     </>
   );

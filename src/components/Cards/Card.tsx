@@ -1,15 +1,17 @@
 import React, { useRef, useState } from "react";
 import { useHolographicEffect } from "../../hooks";
+import { animated } from "@react-spring/web";
 import "./css/Card.css";
 import "./css/Card_shiny.css";
-import { animated } from "@react-spring/web";
+import "./css/Card_Normal.css";
+import "./css/Card_shiny_raycast.css";
 
 interface CardProps {
   img: string;
   foil?: string;
   mask?: string;
   enableEffect?: boolean;
-  data_set?: "Shiny" | "Normal" | "Disable";
+  data_set?: "Shiny" | "Shiny_raycast" | "Normal" | "Disable";
 }
 
 export function Card({
