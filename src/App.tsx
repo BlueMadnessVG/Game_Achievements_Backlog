@@ -14,6 +14,8 @@ const testFoil2 = "/assets/img/116_foil_holo_reverse_2x_foil.webp";
 const testImg = "/assets/img/160_hires.png";
 const testImg2 = "assets/img/116_hires.png";
 
+const testImgTicket = "assets/img/twice_ticket2.png";
+
 function App() {
   const { setState } = useModalContext();
 
@@ -27,9 +29,24 @@ function App() {
         {/* <Display>
           <Game_Case_Model scale={5} />
         </Display> */}
-        <Card img={testImg} mask={testMask} foil={testFoil} data_set={"Shiny_raycast"} />
-        <Card img={testImg2} mask={testFoil2} foil={testMask2} data-set={"Normal"}/>
+        <Card
+          img={testImg2}
+          radius={"4.55% / 3.5%"}
+          foil={testFoil2}
+          mask={testMask2}
+          
+        />
+
+        <Card
+          img={testImgTicket}
+          radius={"5% / 10%"}
+          foil={testFoil}
+          mask={testMask}
+          data_set={"Shiny_raycast"}
+        />
       </div>
+
+      <div></div>
     </>
   );
 }

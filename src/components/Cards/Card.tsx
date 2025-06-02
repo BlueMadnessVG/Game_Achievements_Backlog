@@ -5,19 +5,31 @@ import "./css/Card.css";
 import "./css/Card_shiny.css";
 import "./css/Card_Normal.css";
 import "./css/Card_shiny_raycast.css";
+import "./css/Card_Rainbow.css";
+import "./css/Card_Radiant.css";
+import "./css/Card_Glittery.css";
 
 interface CardProps {
   img: string;
+  radius?: number | string;
   foil?: string;
   mask?: string;
   enableEffect?: boolean;
-  data_set?: "Shiny" | "Shiny_raycast" | "Normal" | "Disable";
+  data_set?:
+    | "Shiny"
+    | "Shiny_raycast"
+    | "Normal"
+    | "Vibrant"
+    | "Radiant"
+    | "Glittery"
+    | "Disable";
 }
 
 export function Card({
   img,
-  foil = '',
-  mask = '',
+  radius,
+  foil = "",
+  mask = "",
   data_set = "Normal",
   enableEffect = true,
 }: CardProps) {
@@ -82,7 +94,12 @@ export function Card({
     <animated.div
       ref={cardRef}
       className={cardClasses}
-      style={springStyle}
+      style={{
+        ...springStyle,
+        ...(radius !== undefined && {
+          "--card-radius": typeof radius === "number" ? `${radius}px` : radius,
+        }),
+      }}
       data-set={data_set}
     >
       <div className={"card_translater"}>
@@ -94,22 +111,12 @@ export function Card({
           aria-label="Interactive card"
           tabIndex={0}
         >
-          <img
-            src="/assets/img/tcg-card-back-2x.jpg"
-            alt="card back"
-            className={"card_back"}
-            width="660"
-            height="921"
-          />
-
           <div className={"card_front"} style={combinedStyles}>
             <img
               src={img}
               alt="Pokemon"
               onLoad={handleImageLoad}
               loading="lazy"
-              width="660"
-              height="921"
             />
             <div className={"card_shine"} />
             <div className={"card_glare"} />

@@ -55,7 +55,3 @@
   --foil: none;
   clip-path: var(--clip-invert);
 }
-
-.card[data-set="Normal"] .card_glare::after {
-    clip-path: var(--clip);
-}
