@@ -28,13 +28,13 @@ export const AxiosInterceptor = () => {
    * @returns {InternalAxiosRequestConfig} The updated request configuration.
    */
   const updateHeaders = (request: InternalAxiosRequestConfig) => {
-    const token = getLocalStorage("YouTube_token");
-    const apiKey = import.meta.env.VITE_IGDB_API_KEY;
+    const token = getLocalStorage("twitch_token");
+    const clientID = import.meta.env.VITE_TWITCH_CLIENT_ID;
 
     request.headers = {
       ...(request.headers ?? {}),
       ...(token && { Authorization: `Bearer ${token}` }),
-      ...(apiKey && { key: apiKey }),
+      ...(clientID && { "Client-ID": clientID }),
     };
 
     return request;

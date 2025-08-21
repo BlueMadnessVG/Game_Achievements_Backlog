@@ -1,5 +1,5 @@
-import { persistLocalStorage } from "../utils";
-import { apiTwitch } from "./apiEndpoints";
+import { persistLocalStorage } from "../../utils";
+import { apiTwitch } from "../apiEndpoints";
 
 const TOKEN_STORAGE_KEY = "twitch_token";
 

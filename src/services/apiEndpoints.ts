@@ -12,8 +12,9 @@ import axios from "axios";
  */
 export const apiIGDB = axios.create({
   baseURL: import.meta.env.VITE_IGDB_API_URL,
-  timeout: Number(import.meta.env.VITE_IGDB_API_TIMEOUT) || 10000,
-  withCredentials: true,
+    headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
 });
 
 /**

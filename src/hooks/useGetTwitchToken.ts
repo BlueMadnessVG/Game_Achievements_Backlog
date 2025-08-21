@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchTwitchToken } from "../services/Twitch.service";
+import { fetchTwitchToken } from "../services/Twitch/Twitch.service";
 import { getLocalStorage } from "../utils";
 
 
@@ -17,8 +17,8 @@ interface Params {
  * 
  * @function
  * @returns {Params} An Object containing:
- *  - `loading`: A boolean indicating if the token is being loaded.
- *  - `token`: The Twitch API token or null if not available.
+ *  - `loading` {boolean}: A boolean indicating if the token is being loaded.
+ *  - `token` {string | null}: The Twitch API token or null if not available.
  * 
  * @remarks
  *  - Token data is stored in localStorage under the key `twitch_token`.
