@@ -4,7 +4,7 @@ interface SearchInputProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function SearchInput({ placeholder, value, onChange }: SearchInputProps) {
+export const SearchInput = ({ placeholder, value, onChange }: SearchInputProps) => {
   return (
     <input
       className="search-input"

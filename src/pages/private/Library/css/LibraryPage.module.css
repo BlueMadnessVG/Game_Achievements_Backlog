@@ -1,0 +1,28 @@
+.libraryContainer {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+}
+
+.libraryContainer > header,
+.libraryContainer > .libraryHeader {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.libraryContent {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 1fr;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .libraryContent {
+        grid-template-columns: 1fr;
+    }
+}
