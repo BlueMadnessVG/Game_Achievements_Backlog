@@ -7,37 +7,37 @@
 }
 
 .libraryAside__list {
-    padding: 1rem;
     overflow-y: auto;
     border-right: 1px solid rgba(255,255,255,0.1);
-
+    padding: 1rem;
 }
 
 .libraryAside__games {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.1rem;
 }
 
 .libraryAside__game {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    
     cursor: pointer;
     transition: background 0.2 ease-in-out;
 }
 
 .libraryAside__game:hover {
-    background: rgba(255,255,255,0.8);
+    background: var(--Color-BgHover);
 }
 
 .libraryAside__game picture {
     flex-shrink: 0;
     width: 21px;
     height: 21px;
-    border-radius: 0.5rem;
     overflow: hidden;
 }
 
@@ -49,7 +49,7 @@
 
 .libraryAside__game span {
     color: white;
-    font-size: 14px;
+    font-size: var(--Text-BodyMedium);
     line-height: auto;
     font-weight: 500;
     white-space: nowrap;
