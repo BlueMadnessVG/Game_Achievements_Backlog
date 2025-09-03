@@ -1,0 +1,19 @@
+.gameCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--Color-BhSecondary);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+
+.gameCard picture {
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+}
+
+.gameCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

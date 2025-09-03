@@ -1,0 +1,12 @@
+.libraryDisplay__Container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.libraryDisplay__Content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+    gap: 3.2rem;
+}
