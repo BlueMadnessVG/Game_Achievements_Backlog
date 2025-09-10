@@ -29,13 +29,7 @@ export const AxiosInterceptor = () => {
    */
   const updateHeaders = (request: InternalAxiosRequestConfig) => {
     const token = getLocalStorage("twitch_token");
-    const clientID = import.meta.env.VITE_TWITCH_CLIENT_ID;
 
-    request.headers = {
-      ...(request.headers ?? {}),
-      ...(token && { Authorization: `Bearer ${token}` }),
-      ...(clientID && { "Client-ID": clientID }),
-    };
 
     return request;
   };

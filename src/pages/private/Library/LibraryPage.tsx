@@ -9,14 +9,14 @@ import { fetchGames } from "../../../services";
 const gamesData = ["Persona 5", "Final Fantasy VII", "The Legend of Zelda"];
 
 export function Library() {
-/*   useEffect(() => {
+  useEffect(() => {
     // Fetch user games when the component mounts
     const fetchUserGames = async () => {
       const games = await fetchGames();
       console.log(games);
     };
     fetchUserGames();
-  }, []); */
+  }, []);
 
   return (
     <div className={`${styles.libraryContainer}`}>
