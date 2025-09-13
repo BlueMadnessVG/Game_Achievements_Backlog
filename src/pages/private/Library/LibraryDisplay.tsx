@@ -1,18 +1,10 @@
 import styles from "./css/LibraryDisplay.module.css";
-import { GameCard } from "../../../components/layout";
 
-export function LibraryDisplay() {
+export function LibraryDisplay({ children }: { children?: React.ReactNode }) {
   return (
     <main className={styles.libraryDisplay__Container}>
         <div className={styles.libraryDisplay__Content}>
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-
-          
+          {children}
         </div>
     </main>
   )

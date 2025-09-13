@@ -1,7 +1,8 @@
+import type { GameCardModel } from "../../../models/GameCard.model";
 import styles from "./css/LibraryAside.module.css";
 
 interface LibraryAsideProps {
-  games: string[];
+  games: GameCardModel[];
 }
 
 export function LibraryAside({ games }: LibraryAsideProps) {
@@ -11,9 +12,9 @@ export function LibraryAside({ games }: LibraryAsideProps) {
         {games.map((game, index) => (
           <li key={index} className={styles.libraryAside__game}>
             <picture>
-              <img src="https://i.pinimg.com/736x/24/74/c9/2474c927dd0ae7ad68e2eb5daab5b7db.jpg" alt={game} />
+              <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`} alt={game.name} />
             </picture>
-            <span>{game}</span>
+            <span>{game.name}</span>
           </li>
         ))}
       </ul>

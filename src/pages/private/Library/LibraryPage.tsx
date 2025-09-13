@@ -1,29 +1,32 @@
 import styles from "./css/LibraryPage.module.css";
 
-import { useEffect } from "react";
+import { type Key } from "react";
 import { LibraryAside } from "./LibraryAside";
 import { LibraryDisplay } from "./LibraryDisplay";
 import { LibraryHeader } from "./LibraryHeader";
-import { fetchGames } from "../../../services";
+import { GameCard } from "../../../components/layout";
+import { useGetGameCover } from "../../../hooks/useGetGameCover";
+import type { GameCardModel } from "../../../models/GameCard.model";
 
-const gamesData = ["Persona 5", "Final Fantasy VII", "The Legend of Zelda"];
+const gamesFetch = "fields name, cover.image_id; limit 10;";
 
 export function Library() {
-  useEffect(() => {
-    // Fetch user games when the component mounts
-    const fetchUserGames = async () => {
-      const games = await fetchGames();
-      console.log(games);
-    };
-    fetchUserGames();
-  }, []);
+  const { data, loading, error } = useGetGameCover(gamesFetch);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!data) return <p>No data available</p>;
 
   return (
     <div className={`${styles.libraryContainer}`}>
       <LibraryHeader />
       <div className={`${styles.libraryContent}`}>
-        <LibraryAside games={gamesData} />
-        <LibraryDisplay />
+        <LibraryAside games={data} />
+        <LibraryDisplay>
+          {data.map((game: GameCardModel, index: Key | null | undefined) => (
+            <GameCard key={index} game={game} />
+          ))}
+        </LibraryDisplay>
       </div>
     </div>
   );

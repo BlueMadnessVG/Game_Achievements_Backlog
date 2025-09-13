@@ -3,10 +3,10 @@ import { apiIGDB } from "../apiEndpoints";
 /**
  * Games Section
  */
-export const fetchGames = async () => {
+export const fetchGames = async (params: string) => {
   const response = await apiIGDB.post(
     "/games",
-    "fields *; limit 10;",
+    params,
     {
       headers: {
         "Content-Type": "text/plain",

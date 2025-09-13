@@ -1,10 +1,15 @@
+import type { GameCardModel } from "../../../models/GameCard.model";
 import styles from "./css/GameCard.module.css";
 
-export const GameCard = () => {
+interface GameCardProps {
+  game: GameCardModel;
+}
+
+export const GameCard = ({ game }: GameCardProps) => {
   return (
     <div className={styles.gameCard}>
       <picture>
-        <img src="gameImg.jpg" alt="Game Title" />
+        <img src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`} alt={game.name} />
       </picture>
     </div>
   );
