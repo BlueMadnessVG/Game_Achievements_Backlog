@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { SearchInput, SearchResultPreview } from "../../../components/layout";
 
-export function LibraryHeader() {
+export const LibraryHeader = memo(() => {
   return (
     <header className="library-header">
       <div className="library-header__buttons">
@@ -20,4 +21,4 @@ export function LibraryHeader() {
       </div>
     </header>
   );
-}
+});

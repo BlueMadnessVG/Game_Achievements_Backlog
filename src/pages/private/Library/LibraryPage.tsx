@@ -1,6 +1,5 @@
 import styles from "./css/LibraryPage.module.css";
 
-import { type Key } from "react";
 import { LibraryAside } from "./LibraryAside";
 import { LibraryDisplay } from "./LibraryDisplay";
 import { LibraryHeader } from "./LibraryHeader";
@@ -23,8 +22,8 @@ export function Library() {
       <div className={`${styles.libraryContent}`}>
         <LibraryAside games={data} />
         <LibraryDisplay>
-          {data.map((game: GameCardModel, index: Key | null | undefined) => (
-            <GameCard key={index} game={game} />
+          {data.map((game: GameCardModel) => (
+            <GameCard key={game.id} game={game} />
           ))}
         </LibraryDisplay>
       </div>
