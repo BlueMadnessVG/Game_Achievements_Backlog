@@ -11,7 +11,11 @@ export const GameCard = memo(({ game }: GameCardProps) => {
     <div className={styles.gameCard}>
       <picture>
         <img
-          src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`}
+          src={
+            game.cover?.image_id
+              ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`
+              : "/placeholder-image.jpg"
+          }
           alt={game.name}
         />
       </picture>

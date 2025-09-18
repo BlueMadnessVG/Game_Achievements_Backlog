@@ -10,11 +10,15 @@ export const LibraryAside = memo(({ games }: LibraryAsideProps) => {
   return (
     <div className={styles.libraryAside__list}>
       <ul className={styles.libraryAside__games}>
-        {games.map((game, index) => (
-          <li key={index} className={styles.libraryAside__game}>
+        {games.map((game) => (
+          <li key={game.id} className={styles.libraryAside__game}>
             <picture>
               <img
-                src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`}
+                src={
+                  game.cover?.image_id
+                    ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`
+                    : "/placeholder-image.jpg"
+                }
                 alt={game.name}
               />
             </picture>
