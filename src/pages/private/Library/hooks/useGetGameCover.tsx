@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchGames } from "../services";
+import { fetchGames } from "../../../../services";
 
 interface Params {
   data: any;

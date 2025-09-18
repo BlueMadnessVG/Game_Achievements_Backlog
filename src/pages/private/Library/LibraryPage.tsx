@@ -4,7 +4,7 @@ import { LibraryAside } from "./LibraryAside";
 import { LibraryDisplay } from "./LibraryDisplay";
 import { LibraryHeader } from "./LibraryHeader";
 import { GameCard } from "../../../components/layout";
-import { useGetGameCover } from "../../../hooks/useGetGameCover";
+import { useGetGameCover } from "./hooks/useGetGameCover";
 import type { GameCardModel } from "../../../models/GameCard.model";
 
 const gamesFetch = "fields name, cover.image_id; limit 10;";

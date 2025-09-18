@@ -1,0 +1,25 @@
+.libraryHeader { 
+    flex-direction: row;
+    background-color: var(--Color-BgTertiary);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.libraryHeader__buttons {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+.libraryHeader__button {
+    background-color: var(--Color-BgTertiary);
+    color: var(--Color-TextMain);
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font: var(--Text-BodyLarge);
+}
+
+.libraryHeader__button:hover {
+    background-color: var(--Color-Secondary);
+}

@@ -1,3 +1,5 @@
+import styles from "./css/SearchInput.module.css"
+import SearchIcon from "../../../assets/icons/search.svg";
 interface SearchInputProps {
   placeholder?: string;
   value?: string;
@@ -6,12 +8,17 @@ interface SearchInputProps {
 
 export const SearchInput = ({ placeholder, value, onChange }: SearchInputProps) => {
   return (
-    <input
-      className="search-input"
-      type="text"
-      placeholder={placeholder || "Search..."}
-      value={value}
-      onChange={onChange}
-    />
+    <div className={styles.searchInputWrapper}>
+      <input
+        className={styles.searchInput}
+        type="text"
+        placeholder={placeholder || "Search..."}
+        value={value}
+        onChange={onChange}
+      />
+      <span className={styles.searchIcon}>
+        <img src={SearchIcon} alt="Search" />
+      </span>
+    </div>
   )
 }

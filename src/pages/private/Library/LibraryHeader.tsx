@@ -1,23 +1,25 @@
+import styles from "./css/LibraryHeader.module.css";
+
 import { memo } from "react";
 import { SearchInput, SearchResultPreview } from "../../../components/layout";
 
 export const LibraryHeader = memo(() => {
   return (
-    <header className="library-header">
-      <div className="library-header__buttons">
-        <button className="library-header__button">Home</button>
-        <button className="library-header__button">Collections</button>
-        <button className="library-header__button">History</button>
+    <header className={styles.libraryHeader}>
+      <div className={styles.libraryHeader__buttons}>
+        <button className={styles.libraryHeader__button}>Home</button>
+        <button className={styles.libraryHeader__button}>Collections</button>
+        <button className={styles.libraryHeader__button}>History</button>
       </div>
-      <div className="library-header__search">
+      <div className={styles.libraryHeader__search}>
         <SearchInput />
-        <div className="library-header__filters"></div>
+        <div className={styles.libraryHeader__filters}></div>
         <SearchResultPreview />
       </div>
-      <div className="library-header__view">
-        <button className="library-header__view-button">Grid</button>
-        <button className="library-header__view-button">List</button>
-        <button className="library-header__view-button">Detail</button>
+      <div className={styles.libraryHeader__view}>
+        <button className={styles.libraryHeader__viewButton}>Grid</button>
+        <button className={styles.libraryHeader__viewButton}>List</button>
+        <button className={styles.libraryHeader__viewButton}>Detail</button>
       </div>
     </header>
   );
