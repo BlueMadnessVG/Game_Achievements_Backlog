@@ -3,7 +3,7 @@ import SearchIcon from "../../../assets/icons/search.svg";
 interface SearchInputProps {
   placeholder?: string;
   value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
 }
 
 export const SearchInput = ({ placeholder, value, onChange }: SearchInputProps) => {
@@ -14,7 +14,7 @@ export const SearchInput = ({ placeholder, value, onChange }: SearchInputProps) 
         type="text"
         placeholder={placeholder || "Search..."}
         value={value}
-        onChange={onChange}
+        onChange={(e => onChange(e.target.value))}
       />
       <span className={styles.searchIcon}>
         <img src={SearchIcon} alt="Search" />
