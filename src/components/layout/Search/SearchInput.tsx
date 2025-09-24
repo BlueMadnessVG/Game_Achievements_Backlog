@@ -1,5 +1,9 @@
 import styles from "./css/SearchInput.module.css"
 import SearchIcon from "../../../assets/icons/search.svg";
+import { SearchFilterButtons } from "./SearchFilterButtons";
+
+
+
 interface SearchInputProps {
   placeholder?: string;
   value?: string;

@@ -1,0 +1,18 @@
+.searchFilterButton {
+    background: rgba(118, 128, 140, 0.05);
+    border: none;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.searchFilterButton .icon {
+    width: 24px;
+    height: 24px;
+}
+
+.searchFilterButton:hover {
+    background: rgba(118, 128, 140, 0.1);
+    cursor: pointer;
+}
