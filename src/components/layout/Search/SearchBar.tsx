@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { useDebounce } from "../../../hooks/useDeobunce";
+import styles from "./css/SearchBar.module.css";
+
+import { useState } from "react";
 import { SearchInput } from "./SearchInput";
 import { SearchResultPreview } from "./SearchResultPreview";
 import { useSearchGame } from "./hook/useSearchGame";
@@ -9,7 +10,7 @@ export const SearchBar = () => {
   const { result, loading, error } = useSearchGame(query);
 
   return (
-    <div className="search-bar">
+    <div className={styles.searchBar}>
       <SearchInput
         value={query}
         onChange={setQuery}

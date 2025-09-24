@@ -24,7 +24,6 @@ export const useSearchGame = (query: string, delay: number = 500) => {
             setLoading(true);
             setError(null);
 
-            console.log("Searching for:", result);
             setResult(tryData);
             setLoading(false);
         }
