@@ -1,0 +1,12 @@
+.ViewBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  margin-right: 10px;
+}
+
+.ViewBar p {
+    padding-right: 10px;
+    font-size: var(---Text-BodyMedium);
+}

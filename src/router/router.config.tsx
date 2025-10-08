@@ -2,6 +2,7 @@ export const PublicRoutes = {
     LOGIN: "Login",
     HOME: "Home",
     LIBRARY: "Library",
+    GAME: "Game/:id",
     COMMUNITY: "Community",
 }
 

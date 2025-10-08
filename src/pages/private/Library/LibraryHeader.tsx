@@ -2,6 +2,7 @@ import styles from "./css/LibraryHeader.module.css";
 
 import { memo } from "react";
 import { SearchBar } from "../../../components/layout/Search/SearchBar";
+import { ViewBar } from "../../../components/layout/View/ViewBar";
 
 export const LibraryHeader = memo(() => {
   return (
@@ -15,9 +16,7 @@ export const LibraryHeader = memo(() => {
         <SearchBar />
       </div>
       <div className={styles.libraryHeader__view}>
-        <button className={styles.libraryHeader__viewButton}>Grid</button>
-        <button className={styles.libraryHeader__viewButton}>List</button>
-        <button className={styles.libraryHeader__viewButton}>Detail</button>
+        <ViewBar />
       </div>
     </header>
   );

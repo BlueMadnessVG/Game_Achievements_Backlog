@@ -1,38 +1,116 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { fetchGames } from "../../../../services";
+import type { GameCardModel } from "../../../../models/GameCard.model";
 
-interface Params {
-  data: any;
-  loading: boolean;
-  error: undefined | string;
+interface useGetGameCoverParams {
+  onSuccess?: (game: GameCardModel[]) => void;
+  onError?: (error: unknown) => void;
+  enable?: boolean;
+  fetchParams: string;
 }
 
-export const useGetGameCover = (fetchParams: string) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<undefined | string>(undefined);
+interface useGetGameCoverReturn {
+  data: GameCardModel[] | null;
+  isLoading: boolean;
+  error: string | null;
+  isSuccess: boolean;
+  refetch: () => Promise<void>;
+  reset: () => void;
+}
 
-  useEffect(() => {
-    setLoading(true);
-    let controller = new AbortController();
+export const useGetGameCover = ({
+  onSuccess,
+  onError,
+  enable = true,
+  fetchParams,
+}: useGetGameCoverParams) => {
+  const [state, setState] = useState<{
+    data: GameCardModel[] | null;
+    isLoading: boolean;
+    error: string | null;
+    isSuccess: boolean;
+  }>({
+    data: null,
+    isLoading: false,
+    error: null,
+    isSuccess: false,
+  });
 
-    const fetchUserGames = async () => {
-      try {
-        const games = await fetchGames(fetchParams);
-        console.log(games);
-        setData(games);
-      } catch (err) {
-        setError("Failed to fetch games");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchUserGames();
-
-    return () => {
-      controller?.abort();
-    }
+  const reset = useCallback(() => {
+    setState({
+      data: null,
+      isLoading: false,
+      error: null,
+      isSuccess: false,
+    });
   }, []);
 
-  return { data, loading, error } as Params;
+  const fetchData = useCallback(async (): Promise<void> => {
+    if (!enable) {
+      reset();
+      return;
+    }
+
+    setState((prev) => ({ ...prev, isLoading: true, error: null }));
+
+    try {
+      const games = await fetchGames(fetchParams);
+
+      setState({
+        data: games,
+        isLoading: false,
+        error: null,
+        isSuccess: true,
+      });
+
+      onSuccess?.(games);
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error
+          ? `Failed to load games: ${err.message}`
+          : "An unexpected error occurred while loading games";
+
+      setState((prev) => ({
+        ...prev,
+        isLoading: false,
+        error: errorMessage,
+        isSuccess: false,
+      }));
+
+      onError?.(err);
+    }
+  }, [fetchParams, enable, reset, onSuccess, onError]);
+
+  const refetch = useCallback(async (): Promise<void> => {
+    await fetchData();
+  }, [fetchData]);
+
+  useEffect(() => {
+    let isMounted = true;
+    const abortController = new AbortController();
+
+    const executeFetch = async () => {
+      if (isMounted) {
+        await fetchData();
+      }
+    };
+
+    if (enable) {
+      executeFetch();
+    }
+
+    return () => {
+      isMounted = false;
+      abortController.abort();
+    };
+  }, [fetchData, enable]);
+
+  return {
+    data: state.data,
+    isLoading: state.isLoading,
+    error: state.error,
+    isSuccess: state.isSuccess,
+    refetch,
+    reset,
+  } as useGetGameCoverReturn;
 };
