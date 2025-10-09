@@ -1,0 +1,49 @@
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 3rem;
+  text-align: center;
+  background: var(--Color-BgTertiary);
+  color: var(--Color-TextMain);
+  border-radius: 12px;
+  margin: 2rem;
+  border: 1px solid var(--Color-Secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.emptyState::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(33, 43, 69, 0.3) 0%,
+    rgba(20, 52, 75, 0.2) 100%
+  );
+  z-index: 1;
+}
+
+.emptyState > * {
+  position: relative;
+  z-index: 2;
+}
+
+.emptyState h2 {
+  font: var(--Text-HeadingMedium);
+  margin-bottom: 1rem;
+  color: var(--Color-TextMain);
+}
+
+.emptyState p {
+  font: var(--Text-BodyMedium);
+  color: var(--Color-TextDim);
+  max-width: 400px;
+  line-height: 1.6;
+}

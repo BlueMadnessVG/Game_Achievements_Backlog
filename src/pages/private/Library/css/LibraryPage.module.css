@@ -26,3 +26,66 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (max-width: 768px) {
+  .skeletonContent {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .skeletonAside {
+    height: 200px;
+  }
+  
+  .skeletonGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .skeletonCard {
+    height: 250px;
+  }
+  
+  .errorState,
+  .emptyState,
+  .crashFallback {
+    margin: 1rem;
+    padding: 2rem;
+    min-height: 50vh;
+  }
+  
+  .errorState h2,
+  .emptyState h2,
+  .crashFallback h2 {
+    font: var(--Text-HeadingSmall);
+  }
+  
+  .errorState p,
+  .emptyState p,
+  .crashFallback p {
+    font: var(--Text-BodySmall);
+  }
+}
+
+@media (max-width: 480px) {
+  .skeleton {
+    padding: 1rem;
+  }
+  
+  .skeletonGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .errorState,
+  .emptyState,
+  .crashFallback {
+    padding: 1.5rem;
+    margin: 0.5rem;
+  }
+  
+  .retryButton {
+    padding: 0.625rem 1.25rem;
+    font: var(--Text-BodySmall);
+    font-weight: 600;
+  }
+}

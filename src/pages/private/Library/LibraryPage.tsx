@@ -7,6 +7,11 @@ import { GameCard } from "../../../components/layout";
 import { useGetGameCover } from "./hooks/useGetGameCover";
 import type { GameCardModel } from "../../../models/GameCard.model";
 import ErrorBoundary from "../../../components/common/ErrorBoundary/ErrorBoundary";
+import { LibrarySkeleton } from "./states/LibrarySkeleton";
+import { DataErrorState } from "./states/DataErrorState";
+import { EmptyLibraryState } from "./states/EmptyLibraryState";
+import type { fallback } from "valibot";
+import { LibraryCrashFallback } from "./states/LibraryCrashFallback";
 
 const gamesFetch = "fields name, cover.image_id; limit 10;";
 
@@ -17,12 +22,15 @@ export function Library() {
     fetchParams: gamesFetch,
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!data?.length) return <p>No data available</p>;
+  if (isLoading) return <LibrarySkeleton />;
+  if (error) return <DataErrorState error={error} refetch={refetch} />;
+  if (!data?.length) return <EmptyLibraryState />;
 
   return (
-    <ErrorBoundary  onError={(error) => console.log('Library crashed:', error)}>
+    <ErrorBoundary
+      onError={(error) => console.log("Library crashed:", error)}
+      fallback={<LibraryCrashFallback refetch={refetch} />}
+    >
       <div className={`${styles.libraryContainer}`}>
         <LibraryHeader />
         <div className={`${styles.libraryContent}`}>
