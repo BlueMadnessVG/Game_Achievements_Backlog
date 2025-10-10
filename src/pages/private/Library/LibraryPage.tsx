@@ -1,8 +1,8 @@
 import styles from "./css/LibraryPage.module.css";
 
-import { LibraryAside } from "./LibraryAside";
-import { LibraryDisplay } from "./LibraryDisplay";
-import { LibraryHeader } from "./LibraryHeader";
+import { LibraryAside } from "./components/LibraryAside/LibraryAside";
+import { LibraryDisplay } from "./components/LibraryDisplay/LibraryDisplay";
+import { LibraryHeader } from "./components/LibraryHeader/LibraryHeader";
 import { GameCard } from "../../../components/layout";
 import { useGetGameCover } from "./hooks/useGetGameCover";
 import type { GameCardModel } from "../../../models/GameCard.model";

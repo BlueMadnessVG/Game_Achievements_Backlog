@@ -1,8 +1,8 @@
+import { SearchBar, ViewBar } from "../../../../../components/layout";
 import styles from "./css/LibraryHeader.module.css";
 
 import { memo } from "react";
-import { SearchBar } from "../../../components/layout/Search/SearchBar";
-import { ViewBar } from "../../../components/layout/View/ViewBar";
+
 
 export const LibraryHeader = memo(() => {
   return (
