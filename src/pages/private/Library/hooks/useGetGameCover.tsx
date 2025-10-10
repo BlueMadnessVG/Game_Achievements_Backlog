@@ -103,7 +103,7 @@ export const useGetGameCover = ({
       isMounted = false;
       abortController.abort();
     };
-  }, [fetchData, enable]);
+  }, [enable]);
 
   return {
     data: state.data,

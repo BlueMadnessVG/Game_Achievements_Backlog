@@ -8,10 +8,17 @@ import { SearchInput } from "./SearchInput";
 import { SearchResultPreview } from "./SearchResultPreview";
 import { useSearchGame } from "./hook/useSearchGame";
 import { SearchFilterButtons } from "./SearchFilterButtons";
+import { useDebounce } from "../../../hooks/useDeobunce";
 
 export const SearchBar = () => {
   const [query, setQuery] = useState("");
   const { result, loading, error } = useSearchGame(query);
+
+  useDebounce(query, 300, (debounceValue) => {
+    console.log(result)
+    console.log('Debounced search:', debounceValue);
+    setQuery(debounceValue);
+  })
 
   return (
     <div className={styles.searchBar}>

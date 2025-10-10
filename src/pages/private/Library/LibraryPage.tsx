@@ -10,7 +10,6 @@ import ErrorBoundary from "../../../components/common/ErrorBoundary/ErrorBoundar
 import { LibrarySkeleton } from "./states/LibrarySkeleton";
 import { DataErrorState } from "./states/DataErrorState";
 import { EmptyLibraryState } from "./states/EmptyLibraryState";
-import type { fallback } from "valibot";
 import { LibraryCrashFallback } from "./states/LibraryCrashFallback";
 
 const gamesFetch = "fields name, cover.image_id; limit 10;";

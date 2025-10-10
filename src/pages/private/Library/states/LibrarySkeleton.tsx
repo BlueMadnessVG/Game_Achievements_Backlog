@@ -7,7 +7,7 @@ export const LibrarySkeleton = () => {
       <div className={styles.skeletonContent}>
         <div className={styles.skeletonAside} />
         <div className={styles.skeletonGrid}>
-          {[...Array(8)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <div key={i} className={styles.skeletonCard} />
           ))}
         </div>
