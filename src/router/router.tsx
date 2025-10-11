@@ -12,12 +12,18 @@ export const AppRouter = () => {
       default: module.Library,
     }))
   );
+  const Game = lazy(() =>
+    import("../pages/private/Game/GamePage").then((module) => ({
+      default: module.GamePage,
+    }))
+  );
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path={PublicRoutes.LIBRARY} element={<Library />} />
+          <Route path={PublicRoutes.GAME} element={<Game />} />
           <Route element={<AuthGuard />}></Route>
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>

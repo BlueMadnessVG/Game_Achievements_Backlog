@@ -1,0 +1,25 @@
+.gamePage {
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--Color-BgMain);
+    color: var(--Color-TextMain);
+    min-height: 100vh;
+}
+
+.gamePage__backButton {
+    background: var(--Color-BgHighlight);
+    border: 1px solid var(--Color-Secondary);
+    color: var(--Color-TextMain);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font: var(--Text-BodyMedium);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 2rem;
+}
+
+.gamePage__backButton:hover {
+    background: var(--Color-BgHover);
+    border-color: var(--Color-Primary);
+}
+

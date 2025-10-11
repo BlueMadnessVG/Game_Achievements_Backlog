@@ -7,10 +7,10 @@ import { GameCard } from "../../../components/layout";
 import { useGetGameCover } from "./hooks/useGetGameCover";
 import type { GameCardModel } from "../../../models/GameCard.model";
 import ErrorBoundary from "../../../components/common/ErrorBoundary/ErrorBoundary";
-import { LibrarySkeleton } from "./states/LibrarySkeleton";
-import { DataErrorState } from "./states/DataErrorState";
-import { EmptyLibraryState } from "./states/EmptyLibraryState";
-import { LibraryCrashFallback } from "./states/LibraryCrashFallback";
+import { LibrarySkeleton } from "./components/states/LibrarySkeleton";
+import { DataErrorState } from "./components/states/DataErrorState";
+import { EmptyLibraryState } from "./components/states/EmptyLibraryState";
+import { LibraryCrashFallback } from "./components/states/LibraryCrashFallback";
 
 const gamesFetch = "fields name, cover.image_id; limit 10;";
 
