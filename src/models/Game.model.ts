@@ -46,80 +46,49 @@ export interface IGDBGame {
   }>;
 }
 
-export interface SteamAchievement {
-  apiName: string;
-  achieved: number;
-  unlockTime?: number;
-  name: string;
-  description: string;
-  icon: string;
-  iconGray: string;
-  displayName?: string;
-  hidden?: number;
-  globalAchievedRate?: number;
-}
-
-export interface SteamGameStats {
-  gameName: string;
-  gameVersion?: string;
-  availableGameStats: {
-    achievements: SteamAchievement[];
-    stats?: Array<{
-      name: string;
-      defaultValue: number;
-      displayName: string;
-    }>;
-  };
-}
-
 export interface Game {
-  id: number;
-  title: string;
-  coverImage: string;
-  description: string;
-  platform: string;
-  releaseDate: string;
-  developer: string;
-  publisher: string;
-  genres: string[];
-  rating?: number;
-  ratingCount?: number;
-  gameModes?: string[];
-  website?: string;
-  screenshots?: string[];
-  trailers?: string[];
+  appId: number;
+  name: string;
+  playtime: {
+    total: number;
+    twoWeeks?: number;
+  };
+  iconUrl?: string;
+  headerUrl: string;
+  hasCommunityVisibleStats: boolean;
+  achievements?: Achievement[];
 }
 
 export interface Achievement {
-  id: string;
+  apiName: string;
   name: string;
   description: string;
-  icon: string;
+  icon: {
+    default: string;
+    achieved: string;
+  };
+  globalPercentage: number;
   unlocked: boolean;
-  unlockDate?: string;
-  rarity: "Common" | "Rare" | "Epic" | "Legendary";
-  points: number;
-  globalUnlockRate?: number;
-  hidden: boolean;
+  unlockTime?: number;
+  platform: Platform;
+  hidden?: boolean;
+  category?: string;
+  points?: number;
 }
+
+export type Platform = 'steam' | 'epic' | 'playstation' | 'xbox' | 'nintendo';
 
 export interface GameStats {
-  totalPlayTime: string;
-  completionPercentage: number;
-  achievementsUnlocked: number;
+  totalGames: number;
+  totalPlaytime: number;
+  completedGames: number;
+  averageCompletion: number;
   totalAchievements: number;
-  lastPlayed: string;
-  currentProgress: string;
-  steamStats?: {
-    playtime_forever: number;
-    playtime_2weeks?: number;
-    achievementsUnlocked: number;
-    totalAchievements: number;
-  };
+  platformBreakdown: Record<Platform, number>;
 }
 
-export interface GameData {
-    game: Game;
-    stats: GameStats;
-    achievements: Achievement[];
+export interface TimelineAchievement extends Achievement {
+  position: number;
+  group?: string;
+  milestone?: boolean;
 }
