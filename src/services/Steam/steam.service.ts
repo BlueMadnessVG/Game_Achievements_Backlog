@@ -1,3 +1,4 @@
+import type { GameAchievementsResponse, UserGamesResponse } from "../../models/api";
 import { apiClient } from "../api/client"
 
 export const steamService = {
@@ -12,7 +13,7 @@ export const steamService = {
         return apiClient.get<GameAchievementsResponse>(
             `/api/steam/user/${steamId}/games/${appId}/achievements`
         )
-    }
+    },
 
     async getUserProfile(steamId: string) {
         return apiClient.get(`/api/steam/user/${steamId}/profile`);

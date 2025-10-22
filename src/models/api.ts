@@ -1,4 +1,4 @@
-import type { Game } from "./Game.model";
+import type { Achievement, Game } from "./Game.model";
 
 export interface BaseResponse { 
     success: boolean;
@@ -36,4 +36,38 @@ export interface UserGameData {
     games: Game[];
     totalCount: number;
     totalPlaytime: number
+}
+
+export type UserGamesResponse = SuccessResponse<UserGameData>;
+
+export interface GameAchievementsData {
+    achievements: Achievement[];
+    summary: {
+        total: number;
+        unlocked: number;
+        percentage: number;
+    }
+}
+
+export type GameAchievementsResponse = SuccessResponse<GameAchievementsData>;
+
+export interface PaginationMetadata {
+    page: number;
+    limit: number;
+    total: number;
+    totalPage: number;
+    hasNext: boolean;
+    hasPrev: boolean;
+}
+
+export interface PaginationParams {
+    page?: number;
+    limit?: number;
+    sortBy?: string;
+    sortOrder?: 'asc' | 'desc';
+}
+
+export interface GetUserGamesParams extends PaginationParams {
+    includeAchievements?: boolean;
+    platform?: string;
 }
