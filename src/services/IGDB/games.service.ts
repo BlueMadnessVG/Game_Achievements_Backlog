@@ -39,4 +39,25 @@ export const gamesServices = {
       return steamGames;
     }
   },
+
+  async searchGame(searchTerm: string) {
+    const [igdbResults, steamResults] = await Promise.all([
+      IGDBService.getGame(searchTerm),
+      this.searchUserSteamGames(searchTerm)
+    ]);
+
+    return {
+      igdb: igdbResults,
+      steam: steamResults,
+      combined: this.mergeGameResults(igdbResults, steamResults)
+    };
+  },
+
+  async searchUserSteamGames(searchTerm: string) {
+    return [];
+  },
+
+  async mergeGameResults(igdbResults: any[], steamGames: any[]) {
+    return [...igdbResults];
+  }
 };
