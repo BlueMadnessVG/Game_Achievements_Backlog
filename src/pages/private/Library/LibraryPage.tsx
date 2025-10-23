@@ -11,14 +11,16 @@ import { LibrarySkeleton } from "./components/states/LibrarySkeleton";
 import { DataErrorState } from "./components/states/DataErrorState";
 import { EmptyLibraryState } from "./components/states/EmptyLibraryState";
 import { LibraryCrashFallback } from "./components/states/LibraryCrashFallback";
+import type { Game } from "../../../models";
 
 const gamesFetch = "fields name, cover.image_id; limit 10;";
 
 export function Library() {
   const { data, isLoading, error, refetch } = useGetGameCover({
+    steamId: '76561198136740830',
     onSuccess: (games) => console.log(`Loaded ${games.length} games`),
     onError: (err) => console.error("Library load failed:", err),
-    fetchParams: gamesFetch,
+    onFinally: () => console.log(data),
   });
 
   if (isLoading) return <LibrarySkeleton />;
@@ -35,8 +37,8 @@ export function Library() {
         <div className={`${styles.libraryContent}`}>
           <LibraryAside games={data} />
           <LibraryDisplay>
-            {data.map((game: GameCardModel) => (
-              <GameCard key={game.id} game={game} />
+            {data.map((game: Game) => (
+              <GameCard key={game.appId} game={game} />
             ))}
           </LibraryDisplay>
         </div>

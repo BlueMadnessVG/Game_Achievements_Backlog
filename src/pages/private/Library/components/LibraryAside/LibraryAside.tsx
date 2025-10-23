@@ -1,9 +1,9 @@
 import { memo } from "react";
-import type { GameCardModel } from "../../../models/GameCard.model";
 import styles from "./css/LibraryAside.module.css";
+import type { Game } from "../../../../../models";
 
 interface LibraryAsideProps {
-  games: GameCardModel[];
+  games: Game[];
 }
 
 export const LibraryAside = memo(({ games }: LibraryAsideProps) => {
@@ -11,14 +11,10 @@ export const LibraryAside = memo(({ games }: LibraryAsideProps) => {
     <div className={styles.libraryAside__list}>
       <ul className={styles.libraryAside__games}>
         {games.map((game) => (
-          <li key={game.id} className={styles.libraryAside__game}>
+          <li key={game.appId} className={styles.libraryAside__game}>
             <picture>
               <img
-                src={
-                  game.cover?.image_id
-                    ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`
-                    : "/placeholder-image.jpg"
-                }
+                src={game.iconUrl ? game.iconUrl : "/placeholder-image.jpg"}
                 alt={game.name}
               />
             </picture>

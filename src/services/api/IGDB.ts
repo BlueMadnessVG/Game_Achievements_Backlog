@@ -70,6 +70,7 @@ class IGDBClient {
 
   async post<T>(url: string, data?: any): Promise<T> {
     const response = await this.client.post<T>(url, data);
+    console.log(response)
     return response.data;
   }
 }

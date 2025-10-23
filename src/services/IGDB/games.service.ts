@@ -8,13 +8,17 @@ import { IGDBService } from "./IGDB.service";
  * Games Section
  */
 export const gamesServices = {
-  async enrichGamesWithMetadata(steamGames: Game[]) {
+  async enrichGamesWithMetadata(steamGames: Game[]): Promise<Game[]> {
+    if (!steamGames.length) return steamGames;
+
     try {
       const gameNames = steamGames.map((game) => game.name);
       const igdbGames = await IGDBService.searchGames({
         search: gameNames[0],
         limit: 10,
       });
+
+      console.log(igdbGames)
 
       return steamGames.map((steamGame) => {
         const igdbGame = igdbGames.find((igdb) =>

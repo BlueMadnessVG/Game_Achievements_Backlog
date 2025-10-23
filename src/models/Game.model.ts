@@ -6,6 +6,7 @@ export interface Game {
     twoWeeks?: number;
   };
   iconUrl?: string;
+  coverUrl?: string;
   headerUrl: string;
   hasCommunityVisibleStats: boolean;
   achievements?: Achievement[];
