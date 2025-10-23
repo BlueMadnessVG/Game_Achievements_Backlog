@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
-import { fetchGames } from "../../../../services";
+import { fetchGames, IGDBServices } from "../../../../services";
 import type { GameCardModel } from "../../../../models/GameCard.model";
 
 interface useGetGameCoverParams {
-  onSuccess?: (game: GameCardModel[]) => void;
+  onSuccess?: (game: IGDBGame[]) => void;
   onError?: (error: unknown) => void;
   enable?: boolean;
   fetchParams: string;
 }
 
 interface useGetGameCoverReturn {
-  data: GameCardModel[] | null;
+  data: IGDBGame[] | null;
   isLoading: boolean;
   error: string | null;
   isSuccess: boolean;
@@ -25,7 +25,7 @@ export const useGetGameCover = ({
   fetchParams,
 }: useGetGameCoverParams) => {
   const [state, setState] = useState<{
-    data: GameCardModel[] | null;
+    data: IGDBGame[] | null;
     isLoading: boolean;
     error: string | null;
     isSuccess: boolean;
@@ -54,7 +54,8 @@ export const useGetGameCover = ({
     setState((prev) => ({ ...prev, isLoading: true, error: null }));
 
     try {
-      const games = await fetchGames(fetchParams);
+      const games = await IGDBServices.getGames(fetchParams);
+      console.log(games)
 
       setState({
         data: games,

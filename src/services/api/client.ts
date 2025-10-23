@@ -34,7 +34,7 @@ class APIClient {
     }
 
     async get<T>(url: string, params?: any): Promise<T> {
-        const response = await this.client.post<T>(url, { params });
+        const response = await this.client.get<T>(url, { params });
         return response.data;
     }
 

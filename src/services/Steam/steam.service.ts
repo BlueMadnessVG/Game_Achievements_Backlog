@@ -15,6 +15,21 @@ export const steamService = {
         )
     },
 
+    async getGamesAchievements(steamId: string, appIds: number[]) {
+        const promises = appIds.map( appId => 
+            this.getGameAchievements(steamId, appId)
+         );
+
+         const result = await Promise.allSettled(promises);
+
+         return result.map((result, index) => ({
+            appId: appIds[index],
+            success: result.status === 'fulfilled',
+            data: result.status === 'fulfilled' ? result.value : null,
+            error: result.status === 'rejected' ? result.reason : null
+         }));
+    },
+
     async getUserProfile(steamId: string) {
         return apiClient.get(`/api/steam/user/${steamId}/profile`);
     }

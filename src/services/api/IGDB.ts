@@ -1,5 +1,9 @@
 import axios, { AxiosError, type AxiosInstance } from "axios";
-import { getLocalStorage, getValidationError, SnackbarUtilities } from "../../utils";
+import {
+  getLocalStorage,
+  getValidationError,
+  SnackbarUtilities,
+} from "../../utils";
 
 class IGDBClient {
   private client: AxiosInstance;
@@ -47,21 +51,26 @@ class IGDBClient {
 
   private handleError(error: AxiosError) {
     if (error.code !== "ERR_CANCELED") {
-        const key = error.code ?? error.response?.status ?? "";
-        const userMessage = getValidationError(key);
-        SnackbarUtilities.error(userMessage);
+      const key = error.code ?? error.response?.status ?? "";
+      const userMessage = getValidationError(key);
+      SnackbarUtilities.error(userMessage);
     }
   }
 
   private transformError(error: AxiosError) {
     return {
-        code: error.code || 'UNKNOWN_ERROR',
-        message: error.message,
-        status: error.response?.status,
-        data: error.response?.data,
-        url: error.config?.url,
-        timestamp: new Date().toISOString()
-    }
+      code: error.code || "UNKNOWN_ERROR",
+      message: error.message,
+      status: error.response?.status,
+      data: error.response?.data,
+      url: error.config?.url,
+      timestamp: new Date().toISOString(),
+    };
+  }
+
+  async post<T>(url: string, data?: any): Promise<T> {
+    const response = await this.client.post<T>(url, data);
+    return response.data;
   }
 }
 
